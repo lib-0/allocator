@@ -8,25 +8,10 @@ set(SOURCES
 
 add_library(G_0_allocator_static STATIC ${SOURCES})
 set_target_properties(G_0_allocator_static PROPERTIES
-  OUTPUT_NAME "-0_allocator"
-  POSITION_INDEPENDENT_CODE ON
-)
-
-add_library(G_0_allocator_shared SHARED ${SOURCES})
-set_target_properties(G_0_allocator_shared PROPERTIES
-  OUTPUT_NAME "-0_allocator"
-  VERSION ${PROJECT_VERSION}
-  SOVERSION ${PROJECT_VERSION_MAJOR}
+  OUTPUT_NAME "-0_allocator_static"
 )
 
 target_include_directories(G_0_allocator_static
-  PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-  PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/external_include
-)
-
-target_include_directories(G_0_allocator_shared
   PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
   PRIVATE
@@ -37,11 +22,7 @@ target_compile_definitions(G_0_allocator_static
   PRIVATE G_SHARED=0
 )
 
-target_compile_definitions(G_0_allocator_shared
-  PRIVATE G_SHARED=1
-)
-
-install(TARGETS G_0_allocator_static G_0_allocator_shared
+install(TARGETS G_0_allocator_static
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
