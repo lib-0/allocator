@@ -18,10 +18,6 @@ target_include_directories(G_0_allocator_static
     ${CMAKE_CURRENT_SOURCE_DIR}/external_include
 )
 
-target_compile_definitions(G_0_allocator_static
-  PRIVATE G_SHARED=0
-)
-
 install(TARGETS G_0_allocator_static
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
